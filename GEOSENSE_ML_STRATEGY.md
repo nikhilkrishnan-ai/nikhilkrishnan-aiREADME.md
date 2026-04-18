@@ -1,6 +1,6 @@
-# GeoSense By NK: Cloud Integration & Machine Learning Strategy
+# GeoSense By NK: Hybrid Cloud Integration & Machine Learning Strategy
 
-The introduction of the `analyze_gps_dataflow.py` Apache Beam pipeline marks the transition of this project from static forensic analysis to a scalable, cloud-native anomaly detection system.
+The introduction of the `analyze_gps_dataflow.py` Apache Beam pipeline marks the transition of this project from static forensic analysis to a scalable, hybrid cloud-native anomaly detection system leveraging both **Google Cloud** and **IBM Cloud**.
 
 ## 1. Google Cloud & Distributed Processing
 
@@ -29,7 +29,7 @@ The detected anomalies serve as an excellent foundation for advanced anomaly det
 Moving forward, the extracted features will power advanced detection strategies:
 
 *   **Statistical Analysis:** These jumps would undoubtedly register as significant outliers in any statistical analysis of distance between points or velocity distribution.
-*   **Machine Learning Training:** To create a labeled dataset for supervised learning, these specific jumps provide perfect examples of "spoofed" or "anomalous" events. The features extracted (e.g., extremely high velocity, straight-line path over water) will contribute to training a robust model on **Vertex AI**.
+*   **Machine Learning Training (IBM Watsonx & Vertex AI):** To create a labeled dataset for supervised learning, these specific jumps provide perfect examples of "spoofed" or "anomalous" events. The features extracted (e.g., extremely high velocity, straight-line path over water) will contribute to training a robust model. This allows for a **Hybrid Cloud approach**, utilizing **IBM Watsonx.ai** for prompt engineering and model training (building upon our IBM Skills Network certification) alongside Google Cloud's Vertex AI.
 *   **Contextual Rules (Geofencing):** We can define rules such as: *"If a device's GPS jumps more than X distance and lands in a large body of water from a land-based origin, flag as highly suspicious."*
 
 ## 5. Demonstration and Visualization
