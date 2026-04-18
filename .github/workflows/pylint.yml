@@ -20,10 +20,4 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')                       
-        --exit-zero
-        "The next line is the command I want to run."
-        
-        
-     
-        
+        pylint $(git ls-files '*.py') --exit-zero
