@@ -1,0 +1,24 @@
+{
+	"servers": {
+		"microsoft/markitdown": {
+			"type": "stdio",
+			"command": "uvx",
+			"args": [
+				"markitdown-mcp@0.0.1a4"
+			],
+			"gallery": "https://api.mcp.github.com",
+			"version": "1.0.0"
+		},
+		"my-mcp-server-9e851ae7": {
+			"type": "stdio",
+			"command": "enter",
+			"args": []
+		},
+		"my-mcp-server-702bebec": {
+			"type": "stdio",
+			"command": "escape",
+			"args": []
+		}
+	},
+	"inputs": []
+}

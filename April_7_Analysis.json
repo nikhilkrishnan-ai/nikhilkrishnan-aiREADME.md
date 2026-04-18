@@ -1,0 +1,72 @@
+{
+  "headers": {
+    "version": "2.0",
+    "project_title": "Forensic Audit of GNSS Data Integrity & AI Reliability",
+    "operation": "Operation Epic Fury - UAE Electronic Warfare",
+    "format": "GPS Forensic Analysis JSON",
+    "classification": "Forensic Evidence",
+    "framework": "IBM-Certified Prompt Engineering",
+    "e7_scaling": {
+      "enabled": true,
+      "factor": 0.0000001,
+      "signal_type": "Galileo E7",
+      "description": "Google data integer to decimal conversion (244300000 to 24.43)",
+      "web_tool_compatibility": "Decimal format required"
+    }
+  },
+  "locations": [
+    {
+      "metadata": {
+        "analysis_date": "April 9, 2026",
+        "data_date": "April 7, 2026",
+        "analysis_type": "GPS Spoofing Detection",
+        "critical_window": "07:00 - 18:00 GMT+4",
+        "base_location": "Mohamed Bin Zayed City, Abu Dhabi (24.3198N, 54.5381E)",
+        "ground_truth": "Physical presence verified via Gainz Gym check-in at 18:40",
+        "data_source": "Timeline.json"
+      },
+      "summary": {
+        "total_entries": 8,
+        "total_data_points": 93,
+        "critical_finding": "6-HOUR GPS BLACKOUT + ANOMALOUS REMOTE FIX",
+        "blackout_period_1": "08:00 - 14:00 GMT+4 (6 hours, no GPS data)",
+        "anomalous_point": {
+          "time": "2026-04-07T14:56:00.000+04:00",
+          "coordinates": "24.789013, 53.0678391",
+          "distance_from_base_km": 145,
+          "description": "Single isolated fix ~145km from base - spoofing signature"
+        },
+        "blackout_period_2": "15:00 - 18:00 GMT+4 (3 hours, no GPS data)",
+        "entry_6_jumps": 24,
+        "entry_8_jump_km": 4.8,
+        "max_recorded_velocity_kmh": 47.5,
+        "total_spoofed_distance_km": 333,
+        "spoofing_assessment": "HIGH PROBABILITY - GPS JAMMING + SPOOFED FIX",
+        "root_cause": "GPS spoofing/signal generator interference, not hardware failure",
+        "confidence_level": "High"
+      },
+      "timeline": [
+        { "period": "00:00 - 07:41", "status": "NORMAL", "location": "24.3198N, 54.5381E", "description": "Stationary at base - Mohamed Bin Zayed City" },
+        { "period": "08:00 - 14:00", "status": "BLACKOUT", "location": null, "duration_hours": 6, "description": "6-hour GPS blackout - active jamming (Operation Epic Fury)", "cause": "Military-grade GPS jamming" },
+        { "period": "14:56", "status": "CRITICAL_ANOMALY", "location": "24.789013N, 53.0678391E", "distance_from_base_km": 145, "description": "Single spoofed GPS fix ~145km from base - Zero-Time Jump signature", "note": "Only one data point in entire 14:00-16:00 window" },
+        { "period": "15:00 - 18:00", "status": "BLACKOUT", "location": null, "duration_hours": 3, "description": "3-hour GPS loss after anomalous fix" },
+        { "period": "18:40", "status": "GROUND_TRUTH_VERIFIED", "location": "Mohamed Bin Zayed City, Abu Dhabi", "description": "Physical presence confirmed - Gainz Gym check-in" },
+        { "period": "18:00 - 23:57", "status": "NORMAL_MOVEMENT", "location": "Dubai area 24.32-24.37N, 54.51-54.54E", "description": "GPS signal restored, normal movement patterns resume" }
+      ],
+      "mitigation": {
+        "method": "Manual AGPS Reset and Cache Clear",
+        "tools": "GNSS diagnostic tools",
+        "result": "Purged corrupted coordinate data, re-locked on valid satellite constellations",
+        "ai_collaboration": "Real-time mitigation strategy deployed with AI assistance"
+      },
+      "analysis_methodology": {
+        "temporal_inconsistency": "Zero-Time Jumps - multiple coordinates for same timestamp",
+        "velocity_spikes": "Flagged movements exceeding human physical limits (47.5 km/h max)",
+        "spatial_displacement": "333km total distance during 2.5-hour power-off window audited",
+        "jump_threshold": "100 meters",
+        "blackout_definition": "No GPS fix for more than 30 minutes",
+        "coordinate_precision": "6-7 decimal places"
+      }
+    }
+  ]
+}

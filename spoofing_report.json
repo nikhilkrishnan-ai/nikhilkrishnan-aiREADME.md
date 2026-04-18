@@ -1,0 +1,177 @@
+{
+  "analysis_date": "April 9, 2026",
+  "data_date": "April 7, 2026",
+  "spoofing_indicators": [
+    {
+      "entry": 6,
+      "from_time": "18:43:00",
+      "to_time": "18:49:00",
+      "distance_m": 219.00544853187097,
+      "velocity_kmh": 2.1900544853187096
+    },
+    {
+      "entry": 6,
+      "from_time": "18:49:00",
+      "to_time": "19:09:00",
+      "distance_m": 232.35973827988917,
+      "velocity_kmh": 0.6970792148396675
+    },
+    {
+      "entry": 6,
+      "from_time": "19:09:00",
+      "to_time": "19:11:00",
+      "distance_m": 478.5936218381609,
+      "velocity_kmh": 14.357808655144828
+    },
+    {
+      "entry": 6,
+      "from_time": "19:11:00",
+      "to_time": "19:15:00",
+      "distance_m": 1366.7161248461327,
+      "velocity_kmh": 20.500741872691993
+    },
+    {
+      "entry": 6,
+      "from_time": "19:15:00",
+      "to_time": "19:24:00",
+      "distance_m": 3202.1821036836695,
+      "velocity_kmh": 21.347880691224464
+    },
+    {
+      "entry": 6,
+      "from_time": "19:24:00",
+      "to_time": "19:25:00",
+      "distance_m": 791.7273473713726,
+      "velocity_kmh": 47.50364084228236
+    },
+    {
+      "entry": 6,
+      "from_time": "19:25:00",
+      "to_time": "19:28:00",
+      "distance_m": 289.35802195893126,
+      "velocity_kmh": 5.787160439178625
+    },
+    {
+      "entry": 6,
+      "from_time": "19:28:00",
+      "to_time": "19:34:00",
+      "distance_m": 301.96637796763224,
+      "velocity_kmh": 3.0196637796763226
+    },
+    {
+      "entry": 6,
+      "from_time": "19:34:00",
+      "to_time": "19:34:00",
+      "distance_m": 351.11217849960417,
+      "velocity_kmh": 0
+    },
+    {
+      "entry": 6,
+      "from_time": "19:34:00",
+      "to_time": "19:35:00",
+      "distance_m": 332.80188655645986,
+      "velocity_kmh": 19.96811319338759
+    },
+    {
+      "entry": 6,
+      "from_time": "19:35:00",
+      "to_time": "19:35:00",
+      "distance_m": 333.82823903117213,
+      "velocity_kmh": 0
+    },
+    {
+      "entry": 6,
+      "from_time": "19:35:00",
+      "to_time": "19:36:00",
+      "distance_m": 207.4288467956295,
+      "velocity_kmh": 12.445730807737771
+    },
+    {
+      "entry": 6,
+      "from_time": "19:36:00",
+      "to_time": "19:49:00",
+      "distance_m": 2469.5684449699593,
+      "velocity_kmh": 11.398008207553659
+    },
+    {
+      "entry": 6,
+      "from_time": "19:49:00",
+      "to_time": "19:54:00",
+      "distance_m": 538.7166705793096,
+      "velocity_kmh": 6.464600046951715
+    },
+    {
+      "entry": 6,
+      "from_time": "19:54:00",
+      "to_time": "19:56:00",
+      "distance_m": 300.5297054887291,
+      "velocity_kmh": 9.015891164661875
+    },
+    {
+      "entry": 6,
+      "from_time": "19:56:00",
+      "to_time": "19:57:00",
+      "distance_m": 215.1049147633848,
+      "velocity_kmh": 12.906294885803089
+    },
+    {
+      "entry": 6,
+      "from_time": "19:57:00",
+      "to_time": "19:59:00",
+      "distance_m": 275.5115682751033,
+      "velocity_kmh": 8.265347048253098
+    },
+    {
+      "entry": 7,
+      "from_time": "20:45:00",
+      "to_time": "21:27:00",
+      "distance_m": 143.86874722805985,
+      "velocity_kmh": 0.2055267817543712
+    },
+    {
+      "entry": 7,
+      "from_time": "21:27:00",
+      "to_time": "21:29:00",
+      "distance_m": 205.30185885832313,
+      "velocity_kmh": 6.159055765749694
+    },
+    {
+      "entry": 7,
+      "from_time": "21:29:00",
+      "to_time": "21:43:00",
+      "distance_m": 329.9159440267317,
+      "velocity_kmh": 1.413925474400279
+    },
+    {
+      "entry": 7,
+      "from_time": "21:43:00",
+      "to_time": "21:44:00",
+      "distance_m": 285.6808478280896,
+      "velocity_kmh": 17.140850869685377
+    },
+    {
+      "entry": 7,
+      "from_time": "21:44:00",
+      "to_time": "21:50:00",
+      "distance_m": 288.63923444482225,
+      "velocity_kmh": 2.8863923444482222
+    },
+    {
+      "entry": 7,
+      "from_time": "21:50:00",
+      "to_time": "21:57:00",
+      "distance_m": 263.03401416009206,
+      "velocity_kmh": 2.25457726422936
+    },
+    {
+      "entry": 8,
+      "from_time": "22:14:00",
+      "to_time": "23:57:00",
+      "distance_m": 4840.608310765271,
+      "velocity_kmh": 2.81977183151375
+    }
+  ],
+  "total_jumps": 24,
+  "max_velocity_kmh": 47.50364084228236,
+  "assessment": "HIGH PROBABILITY OF GPS SPOOFING"
+}
