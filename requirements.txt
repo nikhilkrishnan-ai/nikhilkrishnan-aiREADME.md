@@ -1,1 +1,4 @@
-apache-beam[gcp]
+functions-framework==3.*
+flask==3.0.0
+google-cloud-storage
+
