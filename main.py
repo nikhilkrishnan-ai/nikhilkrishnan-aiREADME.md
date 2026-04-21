@@ -4,9 +4,12 @@ import math
 @functions_framework.http
 def analyze_jump_cloud(request):
     d = request.get_json(silent=True) or {}
-    # Using very short keys to avoid typing errors
-    lt1, ln1 = float(d.get('a', 0)), float(d.get('b', 0))
-    lt2, ln2 = float(d.get('c', 0)), float(d.get('d', 0))
+    
+    # We are using 'a', 'b', 'c', 'd' for the coordinates
+    lt1 = float(d.get('a', 0))
+    ln1 = float(d.get('b', 0))
+    lt2 = float(d.get('c', 0))
+    ln2 = float(d.get('d', 0))
 
     R = 6371.0
     dlat, dlon = math.radians(lt2-lt1), math.radians(ln2-ln1)
@@ -16,5 +19,5 @@ def analyze_jump_cloud(request):
     return {
         "status": "SPOOF_DETECTED" if dist > 5 else "Clear",
         "dist_km": round(dist, 2),
-        "received": {"p1": lt1, "p2": lt2}
+        "received_data": {"lat1": lt1, "lat2": lt2}
     }
