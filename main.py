@@ -2,12 +2,28 @@ import functions_framework
 
 @functions_framework.http
 def analyze_jump_cloud(request):
+    # This handles the data coming from your PowerShell test
     request_json = request.get_json(silent=True)
     
-    # We get the speed from the data sent to the URL
-    speed = request_json.get('speed', 0) if request_json else 0
+    # 47.5 m/s is roughly 171 km/h—fast enough to be a 'jump' or spoof
+    THRESHOLD = 47.5 
     
-    if speed > 47.5:
-        return {"status": "SPOOF_DETECTED", "speed": speed, "analyst": "NK"}, 200
+    speed = 0
+    if request_json and 'speed' in request_json:
+        speed = request_json['speed']
+
+    if speed > THRESHOLD:
+        response = {
+            "status": "SPOOF_DETECTED",
+            "speed_observed": speed,
+            "threshold_limit": THRESHOLD,
+            "analyst": "NK_Forensics"
+        }
     else:
-        return {"status": "Clear", "speed": speed, "analyst": "NK"}, 200
+        response = {
+            "status": "Clear",
+            "speed_observed": speed,
+            "message": "Movement within normal limits."
+        }
+
+    return response, 200
