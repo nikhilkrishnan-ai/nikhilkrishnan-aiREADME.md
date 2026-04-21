@@ -1,23 +1,19 @@
 import functions_framework
-import math
 
 @functions_framework.http
 def analyze_jump_cloud(request):
-    d = request.get_json(silent=True) or {}
+    # This grabs the raw text before it even becomes JSON
+    raw_data = request.get_data(as_text=True)
+    data = request.get_json(silent=True) or {}
     
-    # We are using 'a', 'b', 'c', 'd' for the coordinates
-    lt1 = float(d.get('a', 0))
-    ln1 = float(d.get('b', 0))
-    lt2 = float(d.get('c', 0))
-    ln2 = float(d.get('d', 0))
+    # We look for 'a' or 'lat' or 'lat1' - covering all bases
+    lt1 = data.get('a') or data.get('lat') or data.get('lat1') or 0
+    lt2 = data.get('c') or data.get('prev_lat') or data.get('lat2') or 0
 
-    R = 6371.0
-    dlat, dlon = math.radians(lt2-lt1), math.radians(ln2-ln1)
-    a = math.sin(dlat/2)**2 + math.cos(math.radians(lt1)) * math.cos(math.radians(lt2)) * math.sin(dlon/2)**2
-    dist = R * 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-
+    # If it's still 0, we'll send back the raw text so we can see the error
     return {
-        "status": "SPOOF_DETECTED" if dist > 5 else "Clear",
-        "dist_km": round(dist, 2),
-        "received_data": {"lat1": lt1, "lat2": lt2}
+        "status": "Check Raw Data" if lt1 == 0 else "Data Received",
+        "received_lat1": lt1,
+        "received_lat2": lt2,
+        "what_google_saw": raw_data
     }
