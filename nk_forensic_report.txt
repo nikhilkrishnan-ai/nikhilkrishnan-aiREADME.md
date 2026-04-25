@@ -1,0 +1,9 @@
+--- GPS JUMP ANALYSIS REPORT ---
+Generated for: Nk
+Timestamp: 2026-04-25 21:14:28.172686
+
+Point 0: NORMAL | Lat: 24.4539 | Vel: 0 km/h
+Point 1: NORMAL | Lat: 24.454 | Vel: 0.18 km/h
+Point 2: JUMP_DETECTED | Lat: 25.2048 | Vel: 1474.49 km/h
+Point 3: NORMAL | Lat: 24.4541 | Vel: 0.09 km/h
+Point 4: NORMAL | Lat: None | Vel: 0 km/h
