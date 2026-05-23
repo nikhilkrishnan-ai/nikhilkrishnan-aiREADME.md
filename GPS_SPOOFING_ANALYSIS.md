@@ -44,12 +44,14 @@ Developed a custom analysis script to detect kinematic impossibilities, specific
 
 ## Section 4: Mitigation & Resolution
 
-### AI-Assisted Troubleshooting
-- Collaborated with AI tools to deploy a real-time mitigation strategy
+### Real-Time Validation API on Google Cloud Run
+- Containerized the Python Flask validation service (`python_gps_webhook.py`) using Docker and deployed it serverless on **Google Cloud Run**.
+- The API processes incoming logistics coordinate payloads under **50ms**, instantly analyzing spatiotemporal jumps and flagging spoofing threats.
+- Integrates a robust automated alert system to log anomalies into a secure Dataflow stream.
 
-### Technical Fix
-- Successfully performed a **manual AGPS Reset and Cache Clear** using GNSS diagnostic tools
-- This purged the corrupted coordinate data and forced a re-lock on valid satellite constellations
+### Technical Local Fix
+- Successfully performed a **manual AGPS Reset and Cache Clear** using GNSS diagnostic tools on the local receiver.
+- This purged the corrupted coordinate cache and forced a re-lock on valid satellite constellations (Galileo and GPS).
 
 ---
 
