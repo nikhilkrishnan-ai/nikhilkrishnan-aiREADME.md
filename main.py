@@ -2,16 +2,18 @@ import functions_framework
 
 @functions_framework.http
 def analyze_jump_cloud(request):
-    # ഇതാണ് പുതിയ കോഡ് - ഇതിൽ ടേബിൾ ഫോർമാറ്റ് ഇല്ല!
-    d = request.get_json(silent=True) or {}
+    # Process incoming JSON payload safely from the trigger
+    payload = request.get_json(silent=True) or {}
     
-    # പവർഷെല്ലിൽ നിന്ന് വരുന്ന ഡാറ്റ എടുക്കുന്നു
-    val1 = d.get('a', 'No Data')
-    val2 = d.get('c', 'No Data')
+    # Extract structural values sent from PowerShell / edge client
+    val1 = payload.get('a', 'No Data')
+    val2 = payload.get('c', 'No Data')
 
+    # Return standard clean JSON response dictionary
     return {
-        "message": "NK, we found the data!",
+        "status": "success",
+        "message": "NK, telemetry ingestion pipeline active!",
         "received_a": val1,
         "received_c": val2,
-        "full_data": d
+        "full_payload": payload
     }
