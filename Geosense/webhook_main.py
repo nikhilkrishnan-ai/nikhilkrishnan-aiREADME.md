@@ -1,4 +1,4 @@
-import os
+
 from fastapi import FastAPI, Header, HTTPException, Request
 import uvicorn
 
