@@ -26,6 +26,7 @@ async def receive_gps_data(request: Request, x_api_key: str = Header(None)):
     return {"status": "success", "message": "GeoSense Data securely received!"}
 
 if __name__ == "__main__":
-    # ഗൂഗിൾ ക്ലൗഡ് തരുന്ന പോർട്ട് (8080) എടുക്കുക, അല്ലെങ്കിൽ ലോക്കൽ ടെസ്റ്റിംഗിന് 8000 എടുക്കുക
+    # ഗൂഗിൾ തരുന്ന പോർട്ട് എടുക്കുക, അല്ലെങ്കിൽ ഡിഫോൾട്ട് ആയി 8080 ഉപയോഗിക്കുക
+    import os
     port = int(os.environ.get("PORT", 8080))
     uvicorn.run(app, host="0.0.0.0", port=port)
