@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Header, HTTPException, Request
+importfrom fastapi import FastAPI, Header, HTTPException, Request
 import uvicorn
 
 app = FastAPI(title="GeoSense Data Pipeline")
@@ -28,5 +28,6 @@ async def receive_gps_data(request: Request, x_api_key: str = Header(None)):
     return {"status": "success", "message": "GeoSense Data securely received!"}
 
 if __name__ == "__main__":
-    # ലോക്കൽ സർവർ റൺ ചെയ്യാൻ
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # ഗൂഗിൾ ക്ലൗഡ് തരുന്ന പോർട്ട് (8080) എടുക്കുക, അല്ലെങ്കിൽ ലോക്കൽ ടെസ്റ്റിംഗിന് 8000 എടുക്കുക
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run(app, host="0.0.0.0", port=port)
