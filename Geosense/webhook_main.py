@@ -26,6 +26,7 @@ async def receive_gps_data(request: Request, x_api_key: str = Header(None)):
     return {"status": "success", "message": "GeoSense Data securely received!"}
 
 if __name__ == "__main__":
+    
     # ഗൂഗിൾ തരുന്ന പോർട്ട് എടുക്കുക, അല്ലെങ്കിൽ ഡിഫോൾട്ട് ആയി 8080 ഉപയോഗിക്കുക
     import os
     port = int(os.environ.get("PORT", 8080))
