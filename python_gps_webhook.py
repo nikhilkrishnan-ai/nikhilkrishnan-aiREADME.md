@@ -1,12 +1,19 @@
 import os
+from datetime import datetime
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from datetime import datetime
 
 app = Flask(__name__)
 
-CORS(app, origins=os.environ.get("ALLOWED_ORIGINS", "").split(",") if os.environ.get("ALLOWED_ORIGINS") else [])
+CORS(
+    app,
+    origins=(
+        os.environ.get("ALLOWED_ORIGINS", "").split(",")
+        if os.environ.get("ALLOWED_ORIGINS")
+        else []
+    ),
+)
 
 API_KEY = os.environ.get("GEOSENSE_API_KEY")
 

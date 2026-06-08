@@ -8,7 +8,11 @@ app = FastAPI(title="GeoSense Data Pipeline")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.environ.get("ALLOWED_ORIGINS", "").split(",") if os.environ.get("ALLOWED_ORIGINS") else [],
+    allow_origins=(
+        os.environ.get("ALLOWED_ORIGINS", "").split(",")
+        if os.environ.get("ALLOWED_ORIGINS")
+        else []
+    ),
     allow_methods=["POST"],
     allow_headers=["X-Api-Key", "Content-Type"],
 )
@@ -31,8 +35,8 @@ async def receive_gps_data(request: Request, x_api_key: str = Header(None)):
 
     try:
         payload = await request.json()
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid JSON")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Invalid JSON") from exc
 
     print("Received GeoSense data:", payload)
 
