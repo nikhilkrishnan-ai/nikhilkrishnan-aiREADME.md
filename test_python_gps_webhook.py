@@ -59,6 +59,32 @@ class TestAnalyzeJumpEndpoint:
         body = resp.get_json()
         assert body["status"] == "SPOOFING DETECTED"
 
+    def test_response_contains_time(self, client):
+        resp = client.post(
+            "/api/analyze-jump",
+            data=json.dumps({"speed": 10}),
+            content_type="application/json",
+        )
+        body = resp.get_json()
+        assert "time" in body
+
+
+class TestGPSAnalytics:
+
+    def test_missing_speed_defaults_to_zero(self, client):
+        resp = client.post(
+            "/api/analyze-jump",
+            data=json.dumps({
+                "latitude": 24.4686,
+                "longitude": 54.3001
+            }),
+            content_type="application/json",
+        )
+        assert resp.status_code == 200
+        body = resp.get_json()
+        assert body["status"] == "Clear"
+        assert body["input_speed"] == 0
+
     def test_missing_speed_returns_400(self, client):
         resp = client.post(
             "/api/analyze-jump",
@@ -68,12 +94,3 @@ class TestAnalyzeJumpEndpoint:
         assert resp.status_code == 400
         body = resp.get_json()
         assert "error" in body
-
-    def test_response_contains_time(self, client):
-        resp = client.post(
-            "/api/analyze-jump",
-            data=json.dumps({"speed": 10}),
-            content_type="application/json",
-        )
-        body = resp.get_json()
-        assert "time" in body

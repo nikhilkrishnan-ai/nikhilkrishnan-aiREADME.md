@@ -34,9 +34,7 @@ def analyze_jump():
     if not data or not isinstance(data, dict):
         return jsonify({"error": "Invalid JSON payload"}), 400
 
-    raw_speed = data.get('speed')
-    if raw_speed is None:
-        return jsonify({"error": "Missing required field: speed"}), 400
+    raw_speed = data.get('speed', 0)
 
     try:
         speed = float(raw_speed)
