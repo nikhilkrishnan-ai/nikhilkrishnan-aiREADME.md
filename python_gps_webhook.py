@@ -15,7 +15,7 @@ CORS(
     ),
 )
 
-API_KEY = os.environ.get("GEOSENSE_API_KEY")
+API_KEY = os.environ.get("GPS_WEBHOOK_API_KEY")
 
 
 @app.route('/')

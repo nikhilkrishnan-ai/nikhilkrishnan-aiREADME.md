@@ -59,15 +59,15 @@ class TestAnalyzeJumpEndpoint:
         body = resp.get_json()
         assert body["status"] == "SPOOFING DETECTED"
 
-    def test_missing_speed_defaults_to_zero(self, client):
+    def test_missing_speed_returns_400(self, client):
         resp = client.post(
             "/api/analyze-jump",
             data=json.dumps({}),
             content_type="application/json",
         )
+        assert resp.status_code == 400
         body = resp.get_json()
-        assert body["status"] == "Clear"
-        assert body["input_speed"] == 0
+        assert "error" in body
 
     def test_response_contains_time(self, client):
         resp = client.post(
