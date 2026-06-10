@@ -1,33 +1,48 @@
+import os
 
 from fastapi import FastAPI, Header, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 app = FastAPI(title="GeoSense Data Pipeline")
 
-# 🔒 സെക്യൂരിറ്റിക്ക് വേണ്ടിയുള്ള സീക്രട്ട് കീ (ഇത് ആർക്കും കൊടുക്കരുത്!)
-SECRET_KEY = "Nk_GeoSense_Secret_2026"
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=(
+        os.environ.get("ALLOWED_ORIGINS", "").split(",")
+        if os.environ.get("ALLOWED_ORIGINS")
+        else []
+    ),
+    allow_methods=["POST"],
+    allow_headers=["X-Api-Key", "Content-Type"],
+)
+
+SECRET_KEY = os.environ.get("GEOSENSE_SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("GEOSENSE_SECRET_KEY environment variable is not set")
+
+MAX_PAYLOAD_BYTES = 1_048_576  # 1 MB
+
 
 @app.post("/webhook")
 async def receive_gps_data(request: Request, x_api_key: str = Header(None)):
-    # 1. API Key കറക്റ്റ് ആണോ എന്ന് നോക്കുന്നു
     if x_api_key != SECRET_KEY:
-        raise HTTPException(status_code=401, detail="Unauthorized Access! API Key തെറ്റാണ്.")
+        raise HTTPException(status_code=401, detail="Unauthorized")
 
-    # 2. വരുന്ന GPS/Anomaly ഡാറ്റ (JSON) സ്വീകരിക്കുന്നു
+    body = await request.body()
+    if len(body) > MAX_PAYLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="Payload too large")
+
     try:
         payload = await request.json()
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid Data Format. JSON മാത്രം അയക്കുക.")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Invalid JSON") from exc
 
-    # 3. സ്വീകരിച്ച ഡാറ്റ പ്രോസസ്സ് ചെയ്യുന്നു (തൽക്കാലം ടെർമിനലിൽ പ്രിന്റ് ചെയ്യാൻ)
-    print("🚀 പുതിയ GeoSense ഡാറ്റ കിട്ടി:", payload)
+    print("Received GeoSense data:", payload)
 
-    # 4. സക്സസ് മെസ്സേജ് തിരിച്ചു കൊടുക്കുന്നു
     return {"status": "success", "message": "GeoSense Data securely received!"}
 
+
 if __name__ == "__main__":
-    
-    # # ഗൂഗിൾ തരുന്ന പോർട്ട് എടുക്കുക, അല്ലെങ്കിൽ ഡിഫോൾട്ട് ആയി 8080 ഉപയോഗിക്കുക
-    import os
     port = int(os.environ.get("PORT", 8080))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    uvicorn.run(app, host="127.0.0.1", port=port)
