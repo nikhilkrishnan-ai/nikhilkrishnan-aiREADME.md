@@ -30,59 +30,64 @@ def haversine_distance(coord1, coord2):
     
     return R * c
 
-# Load timeline data
-with open('Timelineapril7.json', 'r') as f:
-    timeline_data = json.load(f)
+def main():
+    # Load timeline data
+    with open('Timelineapril7.json', 'r') as f:
+        timeline_data = json.load(f)
 
-print("=" * 70)
-print("GPS JUMP ANALYSIS - April 7, 2026 Timeline")
-print("=" * 70)
+    print("=" * 70)
+    print("GPS JUMP ANALYSIS - April 7, 2026 Timeline")
+    print("=" * 70)
 
-anomalies = []
+    anomalies = []
 
-for entry_idx, entry in enumerate(timeline_data):
-    points = entry['timelinePath']
-    start_time = entry['startTime']
-    end_time = entry['endTime']
-    
-    print(f"\n📍 Entry {entry_idx + 1}: {start_time[11:19]} to {end_time[11:19]}")
-    print("-" * 70)
-    
-    for i in range(len(points) - 1):
-        current_point = points[i]
-        next_point = points[i + 1]
-        
-        current_coords = parse_coords(current_point['point'])
-        next_coords = parse_coords(next_point['point'])
-        
-        distance = haversine_distance(current_coords, next_coords)
-        
-        current_time = current_point['time']
-        next_time = next_point['time']
-        
-        # Flag as anomaly if jump > 50 meters
-        if distance > 50:
-            anomalies.append({
-                'entry': entry_idx + 1,
-                'from_time': current_time[11:19],
-                'to_time': next_time[11:19],
-                'from_point': current_point['point'],
-                'to_point': next_point['point'],
-                'distance': distance
-            })
-            print(f"⚠️  JUMP DETECTED: {distance:.2f}m")
-            print(f"   From: {current_point['point']} at {current_time[11:19]}")
-            print(f"   To:   {next_point['point']} at {next_time[11:19]}")
-            print()
+    for entry_idx, entry in enumerate(timeline_data):
+        points = entry['timelinePath']
+        start_time = entry['startTime']
+        end_time = entry['endTime']
 
-print("\n" + "=" * 70)
-print(f"SUMMARY: Found {len(anomalies)} GPS jumps > 50 meters")
-print("=" * 70)
+        print(f"\n📍 Entry {entry_idx + 1}: {start_time[11:19]} to {end_time[11:19]}")
+        print("-" * 70)
 
-if anomalies:
-    for i, anom in enumerate(anomalies, 1):
-        print(f"\n{i}. Entry {anom['entry']} - {anom['distance']:.2f}m jump")
-        print(f"   {anom['from_time']} → {anom['to_time']}")
-        print(f"   {anom['from_point']} → {anom['to_point']}")
-else:
-    print("\n✅ No significant GPS jumps detected!")
+        for i in range(len(points) - 1):
+            current_point = points[i]
+            next_point = points[i + 1]
+
+            current_coords = parse_coords(current_point['point'])
+            next_coords = parse_coords(next_point['point'])
+
+            distance = haversine_distance(current_coords, next_coords)
+
+            current_time = current_point['time']
+            next_time = next_point['time']
+
+            # Flag as anomaly if jump > 50 meters
+            if distance > 50:
+                anomalies.append({
+                    'entry': entry_idx + 1,
+                    'from_time': current_time[11:19],
+                    'to_time': next_time[11:19],
+                    'from_point': current_point['point'],
+                    'to_point': next_point['point'],
+                    'distance': distance
+                })
+                print(f"⚠️  JUMP DETECTED: {distance:.2f}m")
+                print(f"   From: {current_point['point']} at {current_time[11:19]}")
+                print(f"   To:   {next_point['point']} at {next_time[11:19]}")
+                print()
+
+    print("\n" + "=" * 70)
+    print(f"SUMMARY: Found {len(anomalies)} GPS jumps > 50 meters")
+    print("=" * 70)
+
+    if anomalies:
+        for i, anom in enumerate(anomalies, 1):
+            print(f"\n{i}. Entry {anom['entry']} - {anom['distance']:.2f}m jump")
+            print(f"   {anom['from_time']} → {anom['to_time']}")
+            print(f"   {anom['from_point']} → {anom['to_point']}")
+    else:
+        print("\n✅ No significant GPS jumps detected!")
+
+
+if __name__ == "__main__":
+    main()
